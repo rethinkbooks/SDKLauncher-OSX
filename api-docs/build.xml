@@ -6,7 +6,7 @@
 	<property name="out.dir" value="./js-api-docs" /> 
 	
 	<!-- this generates the API docs -->
-	<target name ="generate.docs" depends="clean" description="Invoke xcodebuild to do a full build" >
+	<target name ="generate.docs" depends="clean" description="Invoke yuidoc to create docs" >
          <exec executable="yuidoc" spawn="false">
   		 </exec>
     </target>
