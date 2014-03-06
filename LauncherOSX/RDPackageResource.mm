@@ -35,10 +35,11 @@
     std::size_t size = byteStream->BytesAvailable();
     if (size == 0)
     {
-        NSLog(@"BYTESTREAM zero BytesAvailable!");
+        NSLog(@"BYTESTREAM zero BytesAvailable: %@", relPath);
     }
     else
     {
+        NSLog(@"BYTESTREAM BytesAvailable %d: %@", size, relPath);
         return size;
     }
 

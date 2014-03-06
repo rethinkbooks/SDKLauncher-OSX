@@ -38,6 +38,7 @@
 		85DC4030179074CE0044849D /* host_app_feedback.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 85DC402E179074660044849D /* host_app_feedback.js */; };
 		85F74E6316C32A9900D29953 /* LOXPageNumberTextController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 85F74E6216C32A9900D29953 /* LOXPageNumberTextController.mm */; };
 		A250D164A480EFAA1C1E953C /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A250D2D2931FEC8EA4FA765D /* AsyncSocket.m */; };
+		A250D2398445DB088491F35F /* mongoose.c in Sources */ = {isa = PBXBuildFile; fileRef = A250D145DD1290FD9330202E /* mongoose.c */; };
 		A250D5E01BBAE6876869D474 /* RDPackageResource.mm in Sources */ = {isa = PBXBuildFile; fileRef = A250D033A80FCFDDBF9337EE /* RDPackageResource.mm */; };
 		A250D6F351218999A79808CC /* PackageResourceCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = A250D458BAE752C208241D53 /* PackageResourceCache.mm */; };
 		A250D732AF1F0DA9FD3CD96A /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A250D39B570A41271E334B32 /* IOKit.framework */; };
@@ -188,12 +189,14 @@
 		85F74E6216C32A9900D29953 /* LOXPageNumberTextController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LOXPageNumberTextController.mm; sourceTree = "<group>"; };
 		A250D033A80FCFDDBF9337EE /* RDPackageResource.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RDPackageResource.mm; sourceTree = "<group>"; };
 		A250D0C005F7A5D686FFDB18 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
+		A250D145DD1290FD9330202E /* mongoose.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mongoose.c; path = mongoose/mongoose.c; sourceTree = "<group>"; };
 		A250D2D2931FEC8EA4FA765D /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
 		A250D39B570A41271E334B32 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		A250D458BAE752C208241D53 /* PackageResourceCache.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PackageResourceCache.mm; sourceTree = "<group>"; };
 		A250D4C9D6CACD35912BAF87 /* PackageResourceServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageResourceServer.h; sourceTree = "<group>"; };
 		A250D4FC8C4FF479E7A23B9C /* PackageResourceCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageResourceCache.h; sourceTree = "<group>"; };
 		A250D72D175389456124D2B3 /* EPubURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EPubURLProtocol.h; sourceTree = "<group>"; };
+		A250D79C3D64AA1AFA6601C6 /* mongoose.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mongoose.h; path = mongoose/mongoose.h; sourceTree = "<group>"; };
 		A250D86ACD75F01DE9023942 /* EPubURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPubURLProtocol.m; sourceTree = "<group>"; };
 		A250DB0DD4746DF18C3F2E02 /* RDPackageResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDPackageResource.h; sourceTree = "<group>"; };
 		A250DD1D218F6B54ED059FE2 /* EPubURLProtocolBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EPubURLProtocolBridge.m; sourceTree = "<group>"; };
@@ -318,6 +321,8 @@
 				8597D61716824655000FAAAF /* LauncherOSX */,
 				8597D61016824655000FAAAF /* Frameworks */,
 				8597D60E16824655000FAAAF /* Products */,
+				A250D145DD1290FD9330202E /* mongoose.c */,
+				A250D79C3D64AA1AFA6601C6 /* mongoose.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -661,6 +666,7 @@
 				A250D5E01BBAE6876869D474 /* RDPackageResource.mm in Sources */,
 				A250D739FDAC1D47C72066A7 /* EPubURLProtocol.m in Sources */,
 				A250D86DEAB503D112DB34FA /* EPubURLProtocolBridge.m in Sources */,
+				A250D2398445DB088491F35F /* mongoose.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

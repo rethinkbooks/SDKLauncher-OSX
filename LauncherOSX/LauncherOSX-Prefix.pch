@@ -17,7 +17,9 @@
 
 #define USE_NATIVE_ZIP_SEEK
 
-#define USE_SIMPLE_HTTP_SERVER
+// One or the other, or fallback to Mongoose
+#define USE_MONGOOSE_HTTP_SERVER
+//#define USE_SIMPLE_HTTP_SERVER
 
 #ifdef USE_SIMPLE_HTTP_SERVER
 

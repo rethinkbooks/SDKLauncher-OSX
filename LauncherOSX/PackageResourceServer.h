@@ -14,6 +14,7 @@
 
 static BOOL m_skipCache = true;
 
+
 #ifdef USE_SIMPLE_HTTP_SERVER
 
 #import "AQHTTPConnection.h"
@@ -33,7 +34,10 @@ static BOOL m_skipCache = true;
 
 }
 @end
+#elif defined(USE_MONGOOSE_HTTP_SERVER)
+#import "mongoose.h"
 #else
+#error "AsyncSocket??"
 @class AsyncSocket;
 #endif
 
@@ -43,6 +47,12 @@ static BOOL m_skipCache = true;
 
 #ifdef USE_SIMPLE_HTTP_SERVER
     AQHTTPServer * m_server;
+#elif defined(USE_MONGOOSE_HTTP_SERVER)
+    pthread_t m_threadId;
+    struct mg_server * m_server;
+    @private bool m_doPollServer;
+    pthread_mutex_t m_mutex; //PTHREAD_MUTEX_INITIALIZER
+
 #else
 	@private AsyncSocket *m_mainSocket;
 	@private NSMutableArray *m_requests;
@@ -52,5 +62,11 @@ static BOOL m_skipCache = true;
 - (id)initWithPackage:(LOXPackage *)package resourcesFromZipStream_NoFileSystemEncryptedCache:(BOOL)resourcesFromZipStream_NoFileSystemEncryptedCache;
 
 - (int) serverPort;
+
+#if defined(USE_MONGOOSE_HTTP_SERVER)
+- (int) doPollServer;
+- (LOXPackage *) package;
+- (pthread_mutex_t*) mutex;
+#endif
 
 @end
