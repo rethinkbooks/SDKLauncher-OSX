@@ -633,6 +633,9 @@ static int mg_ev_handler(struct mg_connection *conn, enum mg_event ev)
         if (uriLen < packIdLen || strncmp(conn->uri+1, packId, packIdLen) != 0)
         {
             printf("BAD PACKAGE UUI?!\n");
+
+            conn->status_code = 404;
+
             return MG_TRUE;
         }
 
@@ -792,32 +795,18 @@ static int mg_ev_handler(struct mg_connection *conn, enum mg_event ev)
 
             conn->status_code = 200;
 
-            mg_printf(conn, "%s%s%d%s",
-                    "HTTP/1.1 200 OK\r\n"
-                            "Date: ",
+            mg_printf(conn, "%s%s%s%d%s",
+                    "HTTP/1.1 200 OK\r\nDate: ",
                     date,
-                    "\r\n"
-                            "Server: ReadiumPackageResourceServer\r\n"
-                            "Accept-Ranges: bytes\r\n"
-                            "Connection: close\r\n"
-                            "Content-Length: ",
+                    "\r\nServer: ReadiumPackageResourceServer\r\nAccept-Ranges: bytes\r\nConnection: close\r\nContent-Length: ",
                     contentLength,
-                    "\r\n"
-                            "\r\n"
-            );
+                    "\r\n\r\n");
             printf("%s%s%s%d%s",
-                    "HTTP/1.1 200 OK\r\n"
-                            "Date: ",
+                    "HTTP/1.1 200 OK\r\nDate: ",
                     date,
-                    "\r\n"
-                            "Server: ReadiumPackageResourceServer\r\n"
-                            "Accept-Ranges: bytes\r\n"
-                            "Connection: close\r\n"
-                            "Content-Length: ",
+                    "\r\nServer: ReadiumPackageResourceServer\r\nAccept-Ranges: bytes\r\nConnection: close\r\nContent-Length: ",
                     contentLength,
-                    "\r\n"
-                            "\r\n"
-            );
+                    "\r\n\r\n");
 
 
 
