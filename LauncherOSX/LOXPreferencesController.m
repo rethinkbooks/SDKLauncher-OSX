@@ -85,6 +85,31 @@
     [self.webViewController updateSettings: self.preferences];
 }
 
+- (IBAction)onSyntheticSpreadChanged:(id)sender {
+
+    _postponeSettingsUpdate = YES;
+    NSButtonCell *selCell = [sender selectedCell];
+    switch([selCell tag])
+    {
+        case 1:
+            self.preferences.isSyntheticSpreadSingle = [NSNumber numberWithBool:YES];
+            self.preferences.isSyntheticSpreadDouble = [NSNumber numberWithBool:NO];
+            break;
+        case 2:
+            self.preferences.isSyntheticSpreadSingle = [NSNumber numberWithBool:NO];
+            self.preferences.isSyntheticSpreadDouble = [NSNumber numberWithBool:YES];
+            break;
+        default:
+            self.preferences.isSyntheticSpreadSingle = [NSNumber numberWithBool:NO];
+            self.preferences.isSyntheticSpreadDouble = [NSNumber numberWithBool:NO];
+    }
+    _postponeSettingsUpdate = NO;
+
+    [self.preferences setDoNotUpdateView:NO];
+    [self.webViewController updateSettings: self.preferences];
+}
+
+
 - (IBAction)resetEscapables:(id)sender
 {
     NSString* list = [LOXMediaOverlay defaultEscapables];
@@ -170,6 +195,16 @@
     }
     else {
         [self.displayModeCtrl selectCellWithTag: 0];
+    }
+
+    if([_preferences.isSyntheticSpreadDouble boolValue]) {
+        [self.syntheticSpreadCtrl selectCellWithTag:2];
+    }
+    else if([_preferences.isSyntheticSpreadSingle boolValue]) {
+        [self.syntheticSpreadCtrl selectCellWithTag:1];
+    }
+    else {
+        [self.syntheticSpreadCtrl selectCellWithTag:0];
     }
 
     [NSApp beginSheet:self.sheet

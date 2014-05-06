@@ -37,7 +37,8 @@
     if(self) {
 
         self.fontSize = [NSNumber numberWithInt:100];
-        self.isSyntheticSpread = [NSNumber numberWithBool:YES];
+        self.isSyntheticSpreadSingle = [NSNumber numberWithBool:NO];
+        self.isSyntheticSpreadDouble = [NSNumber numberWithBool:NO];
         self.mediaOverlaysSkipSkippables = [NSNumber numberWithBool:NO];
         self.mediaOverlaysEscapeEscapables = [NSNumber numberWithBool:YES];
         self.mediaOverlaysSkippables = [NSString stringWithUTF8String:""];
@@ -53,7 +54,8 @@
 
         _observableProperties = [NSArray arrayWithObjects:
                 NSStringFromSelector(@selector(fontSize)),
-                        NSStringFromSelector(@selector(isSyntheticSpread)),
+                        NSStringFromSelector(@selector(isSyntheticSpreadSingle)),
+                        NSStringFromSelector(@selector(isSyntheticSpreadDouble)),
                         NSStringFromSelector(@selector(columnGap)),
                         NSStringFromSelector(@selector(mediaOverlaysSkipSkippables)),
                         NSStringFromSelector(@selector(mediaOverlaysEscapeEscapables)),
@@ -93,7 +95,19 @@
             
             @try
             {
-                [self setValue:dict[key] forKey:key];
+                if([key isEqualTo:@"isSyntheticSpread"]) {
+                    if([dict valueForKey:key]) {
+                        self.isSyntheticSpreadDouble = [NSNumber numberWithBool:YES];
+                        self.isSyntheticSpreadSingle = [NSNumber numberWithBool:NO];
+                    }
+                    else {
+                        self.isSyntheticSpreadDouble = [NSNumber numberWithBool:NO];
+                        self.isSyntheticSpreadSingle = [NSNumber numberWithBool:NO];
+                    }
+                }
+                else {
+                    [self setValue:dict[key] forKey:key];
+                }
             }
             @catch(NSException *ex)
             {
@@ -109,7 +123,8 @@
 {
     return @{
             NSStringFromSelector(@selector(fontSize)): self.fontSize,
-            NSStringFromSelector(@selector(isSyntheticSpread)): self.isSyntheticSpread,
+            NSStringFromSelector(@selector(isSyntheticSpreadSingle)): self.isSyntheticSpreadSingle,
+            NSStringFromSelector(@selector(isSyntheticSpreadDouble)): self.isSyntheticSpreadDouble,
             NSStringFromSelector(@selector(mediaOverlaysSkipSkippables)): self.mediaOverlaysSkipSkippables,
             NSStringFromSelector(@selector(mediaOverlaysEscapeEscapables)): self.mediaOverlaysEscapeEscapables,
             NSStringFromSelector(@selector(mediaOverlaysSkippables)): self.mediaOverlaysSkippables,

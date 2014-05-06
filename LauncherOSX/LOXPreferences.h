@@ -13,7 +13,8 @@
 
 
 
-@property (nonatomic, strong) NSNumber *isSyntheticSpread;
+@property (nonatomic, strong) NSNumber *isSyntheticSpreadSingle;
+@property (nonatomic, strong) NSNumber *isSyntheticSpreadDouble;
 @property (nonatomic, strong) NSNumber *fontSize;
 @property (nonatomic, strong) NSNumber *columnGap;
 @property (nonatomic, strong) NSNumber *mediaOverlaysSkipSkippables;
