@@ -132,7 +132,7 @@
                                             </buttonCell>
                                             <cells>
                                                 <column>
-                                                    <buttonCell type="radio" title="Use Book Defaults:" imagePosition="right" alignment="left" state="on" inset="2" id="QSc-lb-utl">
+                                                    <buttonCell type="radio" title="Auto:" imagePosition="right" alignment="left" state="on" inset="2" id="QSc-lb-utl">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
@@ -154,7 +154,7 @@
                                             <rect key="frame" x="282" y="231" width="79" height="64"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="cellSize" width="79" height="20"/>
+                                            <size key="cellSize" width="67" height="18"/>
                                             <size key="intercellSpacing" width="4" height="2"/>
                                             <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="0JG-6E-Imb">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

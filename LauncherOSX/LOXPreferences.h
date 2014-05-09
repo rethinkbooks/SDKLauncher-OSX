@@ -13,8 +13,7 @@
 
 
 
-@property (nonatomic, strong) NSNumber *isSyntheticSpreadSingle;
-@property (nonatomic, strong) NSNumber *isSyntheticSpreadDouble;
+@property (nonatomic, strong) NSString *syntheticSpread;
 @property (nonatomic, strong) NSNumber *fontSize;
 @property (nonatomic, strong) NSNumber *columnGap;
 @property (nonatomic, strong) NSNumber *mediaOverlaysSkipSkippables;
@@ -24,8 +23,7 @@
 @property (nonatomic, strong) NSNumber *mediaOverlaysEnableClick;
 @property (nonatomic, strong) NSNumber *mediaOverlaysRate;
 @property (nonatomic, strong) NSNumber *mediaOverlaysVolume;
-@property (nonatomic, strong) NSNumber *isScrollDoc;
-@property (nonatomic, strong) NSNumber *isScrollContinuous;
+@property (nonatomic, strong) NSString *scroll;
 
 - (void)updateMediaOverlaysSkippables:(NSString *)str;
 - (void)updateMediaOverlaysEscapables:(NSString *)str;

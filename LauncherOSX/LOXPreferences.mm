@@ -37,8 +37,7 @@
     if(self) {
 
         self.fontSize = [NSNumber numberWithInt:100];
-        self.isSyntheticSpreadSingle = [NSNumber numberWithBool:NO];
-        self.isSyntheticSpreadDouble = [NSNumber numberWithBool:NO];
+        self.syntheticSpread = @"auto";
         self.mediaOverlaysSkipSkippables = [NSNumber numberWithBool:NO];
         self.mediaOverlaysEscapeEscapables = [NSNumber numberWithBool:YES];
         self.mediaOverlaysSkippables = [NSString stringWithUTF8String:""];
@@ -47,26 +46,23 @@
         self.columnGap = [NSNumber numberWithInt:20];
         self.mediaOverlaysRate = [NSNumber numberWithInt:1];
         self.mediaOverlaysVolume = [NSNumber numberWithInt:100];
-        self.isScrollDoc = [NSNumber numberWithBool:NO];
-        self.isScrollContinuous = [NSNumber numberWithBool:NO];
+        self.scroll = @"auto";
 
         _doNotUpdateView = NO;
 
         _observableProperties = [NSArray arrayWithObjects:
                 NSStringFromSelector(@selector(fontSize)),
-                        NSStringFromSelector(@selector(isSyntheticSpreadSingle)),
-                        NSStringFromSelector(@selector(isSyntheticSpreadDouble)),
-                        NSStringFromSelector(@selector(columnGap)),
-                        NSStringFromSelector(@selector(mediaOverlaysSkipSkippables)),
-                        NSStringFromSelector(@selector(mediaOverlaysEscapeEscapables)),
-                        NSStringFromSelector(@selector(mediaOverlaysSkippables)),
-                        NSStringFromSelector(@selector(mediaOverlaysEscapables)),
-                        NSStringFromSelector(@selector(mediaOverlaysEnableClick)),
-                        NSStringFromSelector(@selector(mediaOverlaysRate)),
-                        NSStringFromSelector(@selector(mediaOverlaysVolume)),
-                        NSStringFromSelector(@selector(isScrollDoc)),
-                        NSStringFromSelector(@selector(isScrollContinuous)),
-                        nil];
+                NSStringFromSelector(@selector(columnGap)),
+                NSStringFromSelector(@selector(mediaOverlaysSkipSkippables)),
+                NSStringFromSelector(@selector(mediaOverlaysEscapeEscapables)),
+                NSStringFromSelector(@selector(mediaOverlaysSkippables)),
+                NSStringFromSelector(@selector(mediaOverlaysEscapables)),
+                NSStringFromSelector(@selector(mediaOverlaysEnableClick)),
+                NSStringFromSelector(@selector(mediaOverlaysRate)),
+                NSStringFromSelector(@selector(mediaOverlaysVolume)),
+                NSStringFromSelector(@selector(syntheticSpread)),
+                NSStringFromSelector(@selector(scroll)),
+                nil];
     }
 
     return self;
@@ -95,19 +91,7 @@
             
             @try
             {
-                if([key isEqualTo:@"isSyntheticSpread"]) {
-                    if([dict valueForKey:key]) {
-                        self.isSyntheticSpreadDouble = [NSNumber numberWithBool:YES];
-                        self.isSyntheticSpreadSingle = [NSNumber numberWithBool:NO];
-                    }
-                    else {
-                        self.isSyntheticSpreadDouble = [NSNumber numberWithBool:NO];
-                        self.isSyntheticSpreadSingle = [NSNumber numberWithBool:NO];
-                    }
-                }
-                else {
-                    [self setValue:dict[key] forKey:key];
-                }
+                [self setValue:dict[key] forKey:key];
             }
             @catch(NSException *ex)
             {
@@ -123,8 +107,7 @@
 {
     return @{
             NSStringFromSelector(@selector(fontSize)): self.fontSize,
-            NSStringFromSelector(@selector(isSyntheticSpreadSingle)): self.isSyntheticSpreadSingle,
-            NSStringFromSelector(@selector(isSyntheticSpreadDouble)): self.isSyntheticSpreadDouble,
+            NSStringFromSelector(@selector(syntheticSpread)): self.syntheticSpread,
             NSStringFromSelector(@selector(mediaOverlaysSkipSkippables)): self.mediaOverlaysSkipSkippables,
             NSStringFromSelector(@selector(mediaOverlaysEscapeEscapables)): self.mediaOverlaysEscapeEscapables,
             NSStringFromSelector(@selector(mediaOverlaysSkippables)): self.mediaOverlaysSkippables,
@@ -133,8 +116,7 @@
             NSStringFromSelector(@selector(mediaOverlaysRate)): self.mediaOverlaysRate,
             NSStringFromSelector(@selector(mediaOverlaysVolume)): self.mediaOverlaysVolume,
             NSStringFromSelector(@selector(columnGap)): self.columnGap,
-            NSStringFromSelector(@selector(isScrollDoc)): self.isScrollDoc,
-            NSStringFromSelector(@selector(isScrollContinuous)): self.isScrollContinuous,
+            NSStringFromSelector(@selector(scroll)): self.scroll,
             NSStringFromSelector(@selector(doNotUpdateView)): [NSNumber numberWithBool:_doNotUpdateView]
     };
 }

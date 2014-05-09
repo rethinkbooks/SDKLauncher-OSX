@@ -24,7 +24,6 @@
 - (IBAction)onViewModeChanged: (id)sender;
 - (IBAction)onSyntheticSpreadChanged: (id)sender;
 
-@property (assign) IBOutlet NSButton *thiteticSpread;
 @property (assign) IBOutlet NSWindow *sheet;
 
 @property (assign) IBOutlet NSPopUpButton *selectorsCtrl;
