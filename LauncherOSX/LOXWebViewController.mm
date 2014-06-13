@@ -28,12 +28,13 @@
 #import "LOXPreferences.h"
 #import "LOXAppDelegate.h"
 #import "LOXCSSStyle.h"
+#import "LOXOpenPageInfo.h"
 #import "LOXUtil.h"
 #import "LOXMediaOverlayController.h"
 #import "PackageResourceServer.h"
 #import "RDPackageResource.h"
 #import <ePub3/utilities/byte_stream.h>
-
+#import <CoreGraphics/CoreGraphics.h>
 
 @interface LOXWebViewController ()
 
@@ -126,6 +127,12 @@
 -(void)onPageChanged:(NSNotification*) notification
 {
     [self updateUI];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self
+                                             selector:@selector(savePageImage)
+                                               object:nil];
+    [self performSelector:@selector(savePageImage)
+               withObject:nil
+               afterDelay:1.0];
 }
 
 - (IBAction)onLeftPageClick:(id)sender
@@ -346,10 +353,62 @@
     NSLog(@"controlTextDidChange: stringValue == %@", [textField stringValue]);
 }
 
+
 - (void)updateUI
 {
     [self.leftPageButton setEnabled:[self.currentPagesInfo canGoLeft]];
     [self.rightPageButton setEnabled:[self.currentPagesInfo canGoRight]];
+}
+
+
+- (void)savePageImage
+{
+    NSError *error;
+
+    NSMutableString *script = [[NSMutableString alloc] init];
+    [script appendString:@"var innerBody = document.getElementById('epubContentIframe').contentDocument.body;\n"];
+    [script appendString:@"var innerBodyRect = innerBody.getBoundingClientRect();\n"];
+    [script appendString:@"var result = {left: innerBodyRect.left, top: innerBodyRect.top, right: innerBodyRect.right, bottom: innerBodyRect.bottom};\n"];
+    [script appendString:@"JSON.stringify(result);"];
+    NSString *resultJSON = [_webView stringByEvaluatingJavaScriptFromString:script];
+    NSDictionary *result = [NSJSONSerialization JSONObjectWithData:[resultJSON dataUsingEncoding:NSUTF8StringEncoding]
+                                                           options:0
+                                                             error:&error];
+
+    NSRect bounds = _webView.bounds;
+    bounds.origin.y = bounds.size.height - [result[@"bottom"] floatValue];
+    bounds.size.width = [result[@"right"] floatValue];
+    bounds.size.height = [result[@"bottom"] floatValue];
+    NSData *pdfData = [_webView dataWithPDFInsideRect:bounds];
+
+    LOXOpenPageInfo *pageInfo = [[[self currentPagesInfo] openPages] lastObject];
+    NSString *filePath = [NSString stringWithFormat:@"/Users/adexter/Desktop/page%d.pdf", [pageInfo spineItemIndex]];
+    if (![pdfData writeToFile:filePath options:0 error:&error]) {
+        NSLog(@"Failed to write file: %@", error);
+    }
+
+    if ([self.currentPagesInfo canGoRight]) {
+        [self onRightPageClick:nil];
+    } else {
+        NSArray *srcPages = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:@"/Users/adexter/Desktop" error:NULL];
+        srcPages = [srcPages filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary *env) {
+            NSString *path = obj;
+            return [path hasPrefix:@"page"] && [path hasSuffix:@".pdf"];
+        }]];
+
+        CGRect mediaBox = CGRectMake(0.0f, 0.0f, bounds.size.width, bounds.size.height);
+        CGContextRef pdfContext = CGPDFContextCreateWithURL((CFURLRef) [NSURL URLWithString:@"file:///Users/adexter/Desktop/book.pdf"],
+                                                     &mediaBox,
+                                                     NULL);
+        for (NSString *pagePath in srcPages) {
+            CGPDFDocumentRef pageDoc = CGPDFDocumentCreateWithURL((CFURLRef) [NSURL URLWithString:[NSString stringWithFormat:@"file:///Users/adexter/Desktop/%@", pagePath]]);
+            CGContextBeginPage(pdfContext, &mediaBox);
+            CGContextDrawPDFPage(pdfContext, CGPDFDocumentGetPage(pageDoc, 1));
+            CGContextEndPage(pdfContext);
+            CGPDFDocumentRelease(pageDoc);
+        }
+        CGPDFContextClose(pdfContext);
+    }
 }
 
 
@@ -360,9 +419,7 @@
 //    NSString* ret = [script evaluateWebScript:callString];
 //
 //    if ([ret isMemberOfClass:[WebUndefined class]]){
-//        NSLog(@"element id %@ not found", elementId);
-//        return -1;
-//    }
+//        NSLog(@"element id j//    }
 //
 //    return [ret intValue];
 //}

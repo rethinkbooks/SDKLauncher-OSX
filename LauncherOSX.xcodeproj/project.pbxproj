@@ -35,6 +35,9 @@
 		85C221A21795C67C004B8E1E /* LOXPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C221A11795C67C004B8E1E /* LOXPreferencesController.m */; };
 		85DC4030179074CE0044849D /* host_app_feedback.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 85DC402E179074660044849D /* host_app_feedback.js */; };
 		85F74E6316C32A9900D29953 /* LOXPageNumberTextController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 85F74E6216C32A9900D29953 /* LOXPageNumberTextController.mm */; };
+		8636A7B5194B7B9C00B45B5C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8636A7B4194B7B9C00B45B5C /* CoreGraphics.framework */; };
+		8636A7B9194B7BAA00B45B5C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8636A7B8194B7BAA00B45B5C /* QuartzCore.framework */; };
+		8636A7BB194B81B700B45B5C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8636A7BA194B81B700B45B5C /* CFNetwork.framework */; };
 		A250D13E6E7432CF2A40E446 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = A250DBC4A054869FB86E1CE2 /* DDLog.m */; };
 		A250D1E2A3BFDE4B6603C02F /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = A250D9A940FA1593BE5148CB /* DDTTYLogger.m */; };
 		A250D1FD76DAB2037CC6E0AA /* HTTPRedirectResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = A250D3B2A89DEF6E73108107 /* HTTPRedirectResponse.m */; };
@@ -194,6 +197,9 @@
 		85F5B56318FC5FBF00FA4F57 /* LOXSpineItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LOXSpineItem.h; sourceTree = "<group>"; };
 		85F74E6116C32A9900D29953 /* LOXPageNumberTextController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOXPageNumberTextController.h; sourceTree = "<group>"; };
 		85F74E6216C32A9900D29953 /* LOXPageNumberTextController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LOXPageNumberTextController.mm; sourceTree = "<group>"; };
+		8636A7B4194B7B9C00B45B5C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8636A7B8194B7BAA00B45B5C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8636A7BA194B81B700B45B5C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A250D0128B8A2A9185DE9538 /* HTTPFileResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPFileResponse.m; sourceTree = "<group>"; };
 		A250D033A80FCFDDBF9337EE /* RDPackageResource.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RDPackageResource.mm; sourceTree = "<group>"; };
 		A250D0FD4F3B3C15444A85DB /* HTTPDataResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDataResponse.m; sourceTree = "<group>"; };
@@ -306,6 +312,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8636A7BB194B81B700B45B5C /* CFNetwork.framework in Frameworks */,
+				8636A7B9194B7BAA00B45B5C /* QuartzCore.framework in Frameworks */,
+				8636A7B5194B7B9C00B45B5C /* CoreGraphics.framework in Frameworks */,
 				850B1A5B16A61FB900619C3C /* ePub3.dylib in Frameworks */,
 				855CFEE8169DFA3E00AD311E /* libz.dylib in Frameworks */,
 				855CFDB61696200B00AD311E /* WebKit.framework in Frameworks */,
@@ -379,6 +388,9 @@
 		8597D61016824655000FAAAF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8636A7BA194B81B700B45B5C /* CFNetwork.framework */,
+				8636A7B8194B7BAA00B45B5C /* QuartzCore.framework */,
+				8636A7B4194B7B9C00B45B5C /* CoreGraphics.framework */,
 				8597D61116824655000FAAAF /* Cocoa.framework */,
 				8597D61316824655000FAAAF /* Other Frameworks */,
 				AD8C8579F49901F4DF1AEECE /* CoreData.framework */,
